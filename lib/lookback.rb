@@ -1,38 +1,18 @@
 require 'octokit'
 require 'optparse'
 require 'lookback/core_ext/string'
-require 'lookback/dotenv'
+require 'lookback/configurable'
 require 'lookback/pull_requests'
 require 'lookback/events'
 
 module Lookback
   class << self
-    def default_octokit_option
-      {
-        auto_paginate: true,
-        per_page: 100
-      }
-    end
-
-    def gh_options
-      default_octokit_option.merge(
-        access_token: ENV['GITHUB_ACCESS_TOKEN']
-      )
-    end
-
-    def ghe_options
-      default_octokit_option.merge(
-        access_token: ENV['GITHUB_ENTERPRISE_ACCESS_TOKEN'],
-        api_endpoint: 'https://YOUR-GITHUB-URL/api/v3/'
-      )
-    end
-
     def gh_client
-      Octokit::Client.new gh_options
+      Octokit::Client.new Configurable.github_octokit_options
     end
 
     def ghe_client
-      Octokit::Client.new ghe_options
+      Octokit::Client.new Configurable.github_enterprise_octokit_options
     end
 
     def events_with_grouping(gh: true, ghe: true, from: nil, to: nil, &block)
