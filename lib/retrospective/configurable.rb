@@ -1,7 +1,7 @@
 require 'yaml'
 require 'pit'
 
-module Lookback
+module Retrospective
   module Configurable
     class << self
       def hub_config_path

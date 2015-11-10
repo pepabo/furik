@@ -5,7 +5,7 @@ require 'bundler/setup'
 
 require 'optparse'
 lib = File.expand_path('../../lib', __FILE__)
-require "#{lib}/lookback"
+require "#{lib}/retrospective"
 
 options = ARGV.getopts(
   'g:l:d:f:t:',
@@ -34,7 +34,7 @@ puts "#{period} Activities"
 puts '-'
 puts ''
 
-Lookback.events_with_grouping(gh: gh, ghe: ghe, from: from, to: to) do |repo, events|
+Retrospective.events_with_grouping(gh: gh, ghe: ghe, from: from, to: to) do |repo, events|
   puts "### #{repo}"
   puts ''
 

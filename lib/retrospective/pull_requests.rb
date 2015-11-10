@@ -1,6 +1,6 @@
 require 'octokit'
 
-module Lookback
+module Retrospective
   class PullRequests
     def initialize(client)
       @client = client

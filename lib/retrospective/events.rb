@@ -1,4 +1,4 @@
-module Lookback
+module Retrospective
   class Events
     def initialize(client)
       @client = client
