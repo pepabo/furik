@@ -5,7 +5,7 @@ require 'bundler/setup'
 
 require 'optparse'
 lib = File.expand_path('../../lib', __FILE__)
-require "#{lib}/retrospective"
+require "#{lib}/furik"
 
 options = ARGV.getopts('g:l:s:e:', 'gh:true', 'ghe:true', 'start:', 'end:')
 
@@ -20,7 +20,7 @@ puts "Pull Requests#{" (#{start_date}...#{end_date})" if start_date && end_date}
 puts '-'
 puts ''
 
-Retrospective.pull_requests(gh: gh, ghe: ghe) do |repo, issues|
+Furik.pull_requests(gh: gh, ghe: ghe) do |repo, issues|
   if issues && !issues.empty?
     string_issues = issues.each.with_object('') do |issue, memo|
       date = issue.created_at.localtime.to_date

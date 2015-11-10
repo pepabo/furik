@@ -1,6 +1,6 @@
 require 'octokit'
 
-module Retrospective
+module Furik
   class PullRequests
     def initialize(client)
       @client = client

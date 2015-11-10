@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'retrospective/version'
+require 'furik/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "retrospective"
-  spec.version       = Retrospective::VERSION
+  spec.name          = "furik"
+  spec.version       = Furik::VERSION
   spec.authors       = ["linyows", "SHIBATA Hiroshi"]
   spec.email         = ["linyows@gmail.com", "hsbt@ruby-lang.org"]
 

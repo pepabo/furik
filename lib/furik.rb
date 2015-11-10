@@ -1,12 +1,12 @@
 require 'octokit'
 require 'optparse'
-require 'retrospective/core_ext/string'
-require 'retrospective/configurable'
-require 'retrospective/pull_requests'
-require 'retrospective/events'
-require "retrospective/version"
+require 'furik/core_ext/string'
+require 'furik/configurable'
+require 'furik/pull_requests'
+require 'furik/events'
+require "furik/version"
 
-module Retrospective
+module Furik
   class << self
     def gh_client
       Octokit::Client.new Configurable.github_octokit_options

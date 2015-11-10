@@ -1,4 +1,4 @@
-module Retrospective
+module Furik
   class Events
     def initialize(client)
       @client = client

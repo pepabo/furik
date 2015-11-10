@@ -1,7 +1,7 @@
 require 'yaml'
 require 'pit'
 
-module Retrospective
+module Furik
   module Configurable
     class << self
       def hub_config_path
@@ -34,7 +34,7 @@ module Retrospective
       end
 
       def github_enterprise_host_by_pit
-        Pit.get('retrospective', require: {
+        Pit.get('furik', require: {
           'github_enterprise_host' => 'Github:Enterprise Host?(ex: your.domain.com)'
         })['github_enterprise_host']
       end
