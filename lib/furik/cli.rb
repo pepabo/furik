@@ -4,7 +4,7 @@ require 'thor'
 module Furik
   class Cli < Thor
     desc 'pulls', 'show pull requests'
-    method_option :gh, type: :boolean, aliases: '-g'
+    method_option :gh, type: :boolean, aliases: '-g', default: true
     method_option :ghe, type: :boolean, aliases: '-l'
     method_option :start_date, type: :string, aliases: '-s'
     method_option :end_date, type: :string, aliases: '-e'
