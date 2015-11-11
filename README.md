@@ -14,6 +14,24 @@ You can show GitHub activity while one day.
 
     $ furik activity
 
+Output example is here:
+
+```
+% furik activity
+Today's Activities
+-
+
+### ruby/rubyspec
+
+- [pull_request](https://github.com/ruby/rubyspec/pull/158): Set Net::FTP.default_passive to false.
+- [comment](https://github.com/ruby/rubyspec/pull/158#issuecomment-155703551): :+1: (Set Net::FTP.default_passive t...)
+
+### ruby/ruby
+
+- [pull_request](https://github.com/ruby/ruby/pull/1091): Fix typo, double 'means'
+(snip)
+```
+
 If you want to show GitHub and GitHub Enterprise activities, You need to add `-l` option to `furik` command.
 
     $ furik activity -l
