@@ -13,6 +13,8 @@ module Furik
       end
 
       def token_by_hub(host = 'github.com')
+        return unless File.exist?(hub_config_path)
+
         hub_config = YAML.load_file hub_config_path
         if !hub_config[host].nil? && !hub_config[host].empty?
           hub_config[host].last['oauth_token']
