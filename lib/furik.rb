@@ -1,5 +1,4 @@
 require 'octokit'
-require 'optparse'
 require 'furik/core_ext/string'
 require 'furik/configurable'
 require 'furik/pull_requests'
