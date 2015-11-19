@@ -67,11 +67,11 @@ module Furik
     end
 
     def user_repo_names
-      @client.repos(@login).map(&:full_name)
+      @client.repos.map(&:full_name)
     end
 
     def user_orgs_names
-      @client.orgs(@login).map(&:login)
+      @client.orgs.map(&:login)
     end
 
     def org_repo_names(org_name)
