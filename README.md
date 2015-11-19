@@ -45,7 +45,7 @@ Pit sotred your token to `~/.pit/default.yaml` by default. You can confirm or mo
 ---
 github.com:
   access_token: your_token
-your.github-enterpise.host:
+your.github-enterprise.host:
   access_token: your_enterprise_token
 furik:
   github_enterprise_host: your.github-enterpise.host
