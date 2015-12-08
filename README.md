@@ -2,6 +2,12 @@
 
 Furik is summary generator for your GitHub activities.
 
+[![ruby gem](https://img.shields.io/gem/v/furik.svg?style=flat-square)][gem]
+[![Travis](https://img.shields.io/travis/pepabo/furik.svg?style=flat-square)][travis]
+
+[gem]: https://rubygems.org/gems/furik
+[travis]: https://travis-ci.org/pepabo/furik
+
 ## Installation
 
 Install it yourself as:
