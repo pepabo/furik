@@ -65,6 +65,8 @@ module Furik
       self.user_repo_names.concat(self.orgs_repo_names).uniq
     end
 
+    # It contains repositories of your organization, If you are a public member
+    # of the organization.
     def user_repo_names
       @client.repos.map(&:full_name)
     end
@@ -73,6 +75,7 @@ module Furik
       @client.orgs.map(&:login)
     end
 
+    # It contains all repositories for your organization.
     def org_repo_names(org_name)
       @client.org_repos(org_name).map(&:full_name)
     end
