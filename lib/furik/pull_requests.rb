@@ -62,8 +62,7 @@ module Furik
     end
 
     def all_repo_names
-      names = self.user_repo_names
-      names.concat self.orgs_repo_names
+      self.user_repo_names.concat(self.orgs_repo_names).uniq
     end
 
     def user_repo_names
