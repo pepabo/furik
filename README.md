@@ -57,7 +57,7 @@ furik:
   github_enterprise_host: your.github-enterpise.host
 ```
 
-NOTE: `your.github-enterprise.host` should be replacecd with your true GH:E hostname(both yaml's key and value).
+NOTE: `your.github-enterprise.host` should be replaced with your true GH:E hostname(both yaml's key and value).
 
 ## Development
 
