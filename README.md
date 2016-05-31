@@ -57,6 +57,8 @@ furik:
   github_enterprise_host: your.github-enterpise.host
 ```
 
+NOTE: `your.github-enterprise.host` should be replacecd with your true GH:E hostname(both yaml's key and value).
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec furik` to use the gem in this directory, ignoring other installed copies of this gem.
