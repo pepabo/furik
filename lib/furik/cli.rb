@@ -1,5 +1,6 @@
 require "furik"
 require 'thor'
+require 'pit'
 
 module Furik
   class Cli < Thor
@@ -17,6 +18,7 @@ module Furik
       puts ''
 
       Furik.pull_requests(gh: options[:gh], ghe: options[:ghe]) do |repo, issues|
+        next if Pit.get('furik')['ignore_repositories'].include?(repo)
         if issues && !issues.empty?
           string_issues = issues.each.with_object('') do |issue, memo|
             date = issue.created_at.localtime.to_date
@@ -64,6 +66,7 @@ module Furik
       puts ''
 
       Furik.events_with_grouping(gh: options[:gh], ghe: options[:ghe], from: from, to: to) do |repo, events|
+        next if Pit.get('furik')['ignore_repositories'].include?(repo)
         puts "### #{repo}"
         puts ''
 
