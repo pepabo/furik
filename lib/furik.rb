@@ -1,6 +1,7 @@
 require 'octokit'
 require 'furik/core_ext/string'
 require 'furik/configurable'
+require 'furik/format'
 require 'furik/pull_requests'
 require 'furik/events'
 require "furik/version"
@@ -15,20 +16,26 @@ module Furik
       Octokit::Client.new Configurable.github_enterprise_octokit_options
     end
 
+    def format(template_path:, properties:)
+      Formatter.new(template_path: template_path).format(properties)
+    end
+
     def events_with_grouping(gh: true, ghe: true, from: nil, to: nil, &block)
       events = []
+      options = {
+        ignore_private_repos: Configurable.ignore_private_repos
+      }
 
       if gh
-        gh_events = Events.new(gh_client).events_with_grouping(from, to, &block)
+        gh_events = Events.new(gh_client, options: options).events_with_grouping(from, to, &block)
         events.concat gh_events if gh_events.is_a?(Array)
       end
 
       if ghe
-        ghe_events = Events.new(ghe_client).events_with_grouping(from, to, &block)
+        ghe_events = Events.new(ghe_client, options: options).events_with_grouping(from, to, &block)
         events.concat ghe_events if ghe_events.is_a?(Array)
       end
 
-      events
     end
 
     def pull_requests(gh: true, ghe: true, &block)

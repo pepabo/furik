@@ -43,6 +43,7 @@ module Furik
     desc 'activity', 'show activity'
     method_option :gh, type: :boolean, aliases: '-g', default: true
     method_option :ghe, type: :boolean, aliases: '-l'
+    method_option :template, type: :string
     method_option :since, type: :numeric, aliases: '-d', default: 0
     method_option :from, type: :string, aliases: '-f', default: Date.today.to_s
     method_option :to, type: :string, aliases: '-t', default: Date.today.to_s
@@ -59,13 +60,14 @@ module Furik
       when 0 then "Today's"
       else "#{since + 1}days"
       end
-      puts "#{period} Activities"
-      puts '-'
-      puts ''
+
+      properties = {}
+      properties[:header] = "#{period} GitHub Activities"
+
+      properties[:activities] = {}
 
       Furik.events_with_grouping(gh: options[:gh], ghe: options[:ghe], from: from, to: to) do |repo, events|
-        puts "### #{repo}"
-        puts ''
+        properties_events = []
 
         events.sort_by(&:type).reverse.each_with_object({ keys: [] }) do |event, memo|
 
@@ -102,11 +104,24 @@ module Furik
           next if memo[:keys].include?(key)
           memo[:keys] << key
 
-          puts "- [#{type}](#{link}): #{title}"
+          properties_events << {
+            type: type,
+            link: link,
+            title: title,
+          }
+
         end
 
-        puts ''
+        properties[:activities][repo] = properties_events
       end
+
+      default_template = File.expand_path(
+        File.join(__FILE__, '../../../template/markdown.erb'))
+      template_path = options[:template] ? File.expand_path(options[:template]) : default_template
+      puts Furik.format(
+          template_path: template_path,
+          properties: properties
+        )
     end
   end
 end

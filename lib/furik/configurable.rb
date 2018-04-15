@@ -27,6 +27,14 @@ module Furik
         })['access_token']
       end
 
+      def ignore_private_repos_by_pit
+        Pit.get('furik')['ignore_private_repos']
+      end
+
+      def ignore_private_repos
+        ignore_private_repos_by_pit
+      end
+
       def github_access_token
         token_by_hub || token_by_pit
       end
