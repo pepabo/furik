@@ -59,13 +59,16 @@ module Furik
       when 0 then "Today's"
       else "#{since + 1}days"
       end
-      puts "#{period} Activities"
-      puts '-'
-      puts ''
 
+      header = []
+      header << "# #{period} Activities"
+      header << '-'
+      header << ''
+
+      body = []
       Furik.events_with_grouping(gh: options[:gh], ghe: options[:ghe], from: from, to: to) do |repo, events|
-        puts "### #{repo}"
-        puts ''
+        body << "### #{repo}"
+        body << ''
 
         events.sort_by(&:type).reverse.each_with_object({ keys: [] }) do |event, memo|
 
@@ -102,11 +105,14 @@ module Furik
           next if memo[:keys].include?(key)
           memo[:keys] << key
 
-          puts "- [#{type}](#{link}): #{title}"
+          body << "- [#{type}](#{link}): #{title}"
         end
 
-        puts ''
+        body << ''
       end
+
+      body = ['Any activities are not found.'] if body.empty?
+      puts (header + body).join("\n")
     end
   end
 end

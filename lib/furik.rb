@@ -17,18 +17,20 @@ module Furik
 
     def events_with_grouping(gh: true, ghe: true, from: nil, to: nil, &block)
       events = []
+      options = {
+        ignore_private_repos: Configurable.ignore_private_repos
+      }
 
       if gh
-        gh_events = Events.new(gh_client).events_with_grouping(from, to, &block)
+        gh_events = Events.new(gh_client, options: options).events_with_grouping(from, to, &block)
         events.concat gh_events if gh_events.is_a?(Array)
       end
 
       if ghe
-        ghe_events = Events.new(ghe_client).events_with_grouping(from, to, &block)
+        ghe_events = Events.new(ghe_client, options: options).events_with_grouping(from, to, &block)
         events.concat ghe_events if ghe_events.is_a?(Array)
       end
 
-      events
     end
 
     def pull_requests(gh: true, ghe: true, &block)
