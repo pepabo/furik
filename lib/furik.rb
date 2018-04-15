@@ -1,6 +1,7 @@
 require 'octokit'
 require 'furik/core_ext/string'
 require 'furik/configurable'
+require 'furik/format'
 require 'furik/pull_requests'
 require 'furik/events'
 require "furik/version"
@@ -13,6 +14,10 @@ module Furik
 
     def ghe_client
       Octokit::Client.new Configurable.github_enterprise_octokit_options
+    end
+
+    def format(template_path:, properties:)
+      Formatter.new(template_path: template_path).format(properties)
     end
 
     def events_with_grouping(gh: true, ghe: true, from: nil, to: nil, &block)

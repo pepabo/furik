@@ -1,0 +1,12 @@
+<%= properties[:header] %>
+-
+
+<% properties[:activities].each do |repo, events| %>
+### <%= repo %>
+
+<% events.each do |e| %>- <%= "[#{e[:type]}](#{e[:link]}): #{e[:title]}" %>
+<% end %>
+<% end %>
+<% if properties[:activities].empty? %>
+Any activities are not found.
+<% end %>
