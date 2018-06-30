@@ -24,8 +24,7 @@ module Furik
             next if start_date && date < start_date
             next if end_date && date > end_date
 
-            memo << "- [#{issue.number} #{issue.state}](#{issue.html_url}):"
-            memo << " #{issue.title}"
+            memo << "- [#{issue.title}](#{issue.html_url}):"
             memo << " (#{issue.body.plain.cut})" if issue.body && !issue.body.empty?
             memo << " #{issue.created_at.localtime.to_date}\n"
           end
