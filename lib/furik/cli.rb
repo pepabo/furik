@@ -45,20 +45,26 @@ module Furik
     method_option :since, type: :numeric, aliases: '-d', default: 0
     method_option :from, type: :string, aliases: '-f', default: Date.today.to_s
     method_option :to, type: :string, aliases: '-t', default: Date.today.to_s
+    method_option :on, type: :string, aliases: '-o'
     def activity
-      from = Date.parse(options[:from])
-      to   = Date.parse(options[:to])
+      on = Date.parse(options[:on]) if options[:on]
+      from = on || Date.parse(options[:from])
+      to   = on || Date.parse(options[:to])
       since = options[:since]
 
       diff = (to - from).to_i
       diff.zero? ? from -= since : since = diff
 
-      period = case since
-      when 999 then 'All'
-      when 0 then "Today's"
-      else "#{since + 1}days"
+      if on
+        puts "Activities on #{on}"
+      else
+        period = case since
+                 when 999 then 'All'
+                 when 0 then "Today's"
+                 else "#{since + 1}days"
+                 end
+        puts "#{period} Activities"
       end
-      puts "#{period} Activities"
       puts '-'
       puts ''
 
