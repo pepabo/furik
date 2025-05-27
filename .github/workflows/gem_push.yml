@@ -10,12 +10,12 @@ permissions:
 
 jobs:
   push:
-    if: github.repository == 'pepabo/oneaws'
+    if: github.repository == 'pepabo/furik'
     runs-on: ubuntu-latest
 
     environment:
       name: rubygems.org
-      url: https://rubygems.org/gems/oneaws
+      url: https://rubygems.org/gems/furik
 
     permissions:
       contents: write
